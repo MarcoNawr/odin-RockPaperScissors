@@ -22,25 +22,33 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let choice = prompt("Was wählst du? ");
-    const errorMessage = "Du musst eins der drei vailiden Werte auswählen: rock, paper or scissors"; 
+    //return valid human choice
+    let choice = prompt("Was wählst du (rock, paper oder scissors)? ");
     choice = choice.toLowerCase();
 
     if (choice === "rock" || choice === "paper" || choice === "scissors"){
         return choice;
     } else {
-        return errorMessage;
+        return choice = "errorMessage";
     }    
 }
 
 function playRound(){
-    let humanChoice = "";
-    let computerChoice = "";
+    // play a round between computer an human
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+    let winner = "";
+
+    if (humanChoice === "errorMessage"){
+        return "Error: use rock, paper or scissors"
+    } else {// TBD AUSWERTUNGSLOGIK WER HAT GEWONNEN
+    }
+    
 }
 
 // INVOKE FUNKTIONS 
 //#############################
+playRound();
 
-//Human Choice
-console.log("Computer: " + getComputerChoice());
-console.log("Human: " + getHumanChoice());
+// console.log("Computer: " + getComputerChoice());
+// console.log("Human: " + getHumanChoice());
