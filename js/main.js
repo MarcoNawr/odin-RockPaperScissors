@@ -39,10 +39,6 @@ function playRound(){
     let computerChoice = getComputerChoice();
     let winner = "";
 
-    // if (humanChoice === "errorMessage"){
-    //     return "Error: use rock, paper or scissors"
-    // } else {// TBD AUSWERTUNGSLOGIK WER HAT GEWONNEN
-    // }
 
     switch (humanChoice) {
         case 'errorMessage':
@@ -84,6 +80,28 @@ function playRound(){
         default:
           console.log("Sorry, something went wrong");
       }
+
+ //easy other Solution
+//  function playRound(humanChoice, computerChoice) {
+//     if(humanChoice === computerChoice) {
+//         console.log("It's a tie! Make another pick"); 
+//     }
+//     else if(
+//         (humanChoice == "rock" && computerChoice == "scissors") ||
+//         (humanChoice == "scissors" && computerChoice == "paper") ||
+//         (humanChoice == "paper" && computerChoice == "rock")
+//     ) {
+            //alle die gewinnen so
+//         humanScore++;
+//         console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+//     } else {
+            //alle anderen verlierem, also so
+//         computerScore++;
+//         console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+//     }
+// }
+
+
     console.clear();
     console.log(winner + " Zwischenstand ==> Human: " + humanScore + " Computer: " + computerScore);
     playAgain();
