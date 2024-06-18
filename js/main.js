@@ -104,7 +104,7 @@ function playRound(){
 
     console.clear();
     console.log(winner + " Zwischenstand ==> Human: " + humanScore + " Computer: " + computerScore);
-    playAgain();
+    //playAgain();
 }
 
 function playAgain(){

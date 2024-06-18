@@ -1,0 +1,257 @@
+/*############################################
+ALL
+############################################*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+
+        /*DevMode*/
+        /* border: solid 2px red;
+        padding: 10px;
+        margin: 10px; */
+        /*End of DevMode*/
+}
+
+body{
+    color: var(--brightTextColor);
+}
+
+/*############################################
+ROOT
+############################################*/
+
+:root {
+    /*Basics*/
+    --std_margin: 1.0rem;
+    --std_padding: 1.0rem;
+    --std_radius: 0.5rem;
+    
+    /*Color's*/
+    --primaryColor400: red;
+    --secondaryColor600: #02202b;
+    --secondaryColor500: #073b4c;
+    --secondaryColor400: #11566d;
+    --secondaryColor300: #2e88a7;
+    --secondaryColor200: #5ec0e0;
+    --secondaryColor100: #a2dff3;
+    --secondaryColor050: #d3f0fa;
+    --accentColor600: #cc244b;
+    --accentColor500: #e0365d;
+    --accentColor400: #ef476f;
+    --accentColor300: #f86184;
+    --accentColor200: #fa7896;
+    --accentColor100: #fda7bb;
+    --accentColor050: #ffdfe7;
+
+    --darkBackgroundColor: black;
+    --brightBackgroundColor: white;
+    --darkTextColor: black;
+    --brightTextColor: white;
+
+    /*Card's*/
+    --std_border: 1px solid black;
+    --std_borderGlow: 1px solid yellow;
+    --std_boxShadow: 5px 5px 5px 0px #000000;
+    --std_boxShadowGlow: 5px 5px 5px 0px yellow;
+    
+    /*sizes*/
+    --minWidthrpsGameboard: 850px;
+    --minWidthrpsContainer: 800px;
+  }
+
+/*############################################
+rpsGameboard
+############################################*/
+.rpsGameboard{    
+    padding: var(--std_padding);
+    
+    min-width: var(--minWidthrpsGameboard);
+    height: 100vh;
+    min-height: 750px;
+
+    background-color: var(--brightBackgroundColor);
+}
+
+
+
+/*############################################
+rpsSettings
+############################################*/
+.rpsSettings{
+    margin: var(--std_margin) 0 var(--std_margin) 5px;
+    padding: var(--std_padding);
+    border: var(--std_border);
+    border-radius: var(--std_radius);
+    text-align:center;
+    background-color: var(--secondaryColor500);
+}
+
+fieldset{
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+
+legend{
+    margin-left:  1.0rem;
+    font-weight: bolder;
+}
+.btnGo{
+    padding: 5px 50px 5px 50px ;
+    border: var(--std_border);
+    border-radius: var(--std_radius);
+    background-color: var(--secondaryColor300);
+    color: var(--brightTextColor);
+}
+.btnGo:hover{
+    
+    background-color: var(--secondaryColor100);
+    color: var(--darkTextColor);
+    border: var(--std_borderGlow);
+}
+
+/*############################################
+rpsCurrentRound
+############################################*/
+.h2rpsCurrentRound{
+    text-align: center; 
+    background-color: var(--accentColor400);
+    padding-top: 1.0rem;
+    padding-bottom: 0px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.rpsCurrentRound{
+    min-width: var(--minWidthrpsContainer);
+    padding: var(--std_padding);
+    /*border: var(--std_border);*/
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    background-color: var(--accentColor400); 
+    color: var(--brightTextColor);
+    font-size:larger;
+    font-weight: bold;
+    
+    
+    /*is FlexContainer*/
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.hummanchoice{
+    padding: var(--std_padding);
+    border: var(--std_border);
+    border-radius: var(--std_radius);
+    background-color: var(--secondaryColor400);
+
+    /*is FlexItem*/
+    flex-grow: 1;
+
+    /*is FlexContainer*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hummanchoice__cards{
+    /*is FlexContainer*/
+    display: flex;
+    justify-content:center;
+}
+
+.hummanchoice__card{
+    
+    /*Transform/Transition*/
+     overflow: hidden; /*Everything above this element (too large) is hidden*/
+     transition: transform 0.3s ease;
+    /*is FlexItem*/
+    flex-grow: 1;
+    max-width: 200px;
+}
+
+.hummanchoice__card:hover {
+    transform: translateY(-5px);
+    background-color: var(--secondaryColor100);
+    color: var(--darkTextColor);
+    box-shadow: var(--std_boxShadowGlow);
+    border: var(--std_borderGlow);
+  }
+
+.hummanchoice__card, .computerchoice__card{
+    margin: var(--std_margin);
+    padding: var(--std_padding);
+    border: var(--std_border);
+    border-radius: var(--std_radius);
+    box-shadow: var(--std_boxShadow);
+    text-align: center;
+
+    background-color: var(--secondaryColor300);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 1em;;
+}
+
+.computerchoice{
+    padding: var(--std_padding);
+    border: var(--std_border);
+    border-radius: var(--std_radius);
+    background-color: var(--secondaryColor400);
+
+    /*is FlexContainer*/
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+.hummanchoice__h2, .computerchoice__h2{
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+/*############################################
+rpsResultCurrentRound
+############################################*/
+.rpsResultCurrentRound{
+    margin: var(--std_margin) 0 var(--std_margin) 0;
+    padding: var(--std_padding);
+    border: var(--std_border);
+    border-radius: var(--std_radius);
+    text-align: center;
+    background-color: var(--secondaryColor500);
+}
+
+
+/*############################################
+rpsResultGame
+############################################*/
+.rpsResultGame{
+    margin: var(--std_margin) 0 var(--std_margin) 0;
+    padding: var(--std_padding);
+    border: var(--std_border);
+    border-radius: var(--std_radius);
+    text-align: center;
+    background-color: var(--secondaryColor500);
+}
+
+
+
+/*############################################
+rpsResultGameMessage
+############################################*/
+.rpsResultGameMessage{
+      background-color: rgb(255, 0, 234);
+}
+
