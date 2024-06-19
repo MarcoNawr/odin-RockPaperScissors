@@ -134,14 +134,17 @@ function getComputerChoice(){
     if (random < 0.33){
         computerchoice__icon.removeChild(computerchoice__icon.firstElementChild);
         computerchoice__icon.innerHTML = SVG_ROCK;
+        computerchoice__choice.textContent = "Rock";
         return choice = "rock";
     }else if (random >=0.33 && random < 0.66){
         computerchoice__icon.removeChild(computerchoice__icon.firstElementChild);
         computerchoice__icon.innerHTML = SVG_PAPER;
+        computerchoice__choice.textContent = "Paper";
         return choice = "paper";
     }else{
         computerchoice__icon.removeChild(computerchoice__icon.firstElementChild);
         computerchoice__icon.innerHTML = SVG_SCISSOR;
+        computerchoice__choice.textContent = "Scissor";
         return choice = "scissors";
     }
 }
@@ -259,6 +262,7 @@ function resetGame(){
         p_rpsResultGame.textContent = "...";
         p_rpsResultCurrentRound.textContent = "...";
         gameModeChoosed=false;
+        computerchoice__choice.textContent = "choose first";
 }
 
 function overlayOn() {
