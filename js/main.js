@@ -13,6 +13,8 @@ const headlineCurrentRound = document.querySelector(".h2rpsCurrentRound");
 const humanChoiceRock = document.querySelector("#humanChoiceRock");
 const humanChoicePaper = document.querySelector("#humanChoicePaper");
 const humanChoiceScissors = document.querySelector("#humanChoiceScissors");
+const rpsResultCurrentRound = document.querySelector(".rpsResultCurrentRound");
+const p_rpsResultCurrentRound = document.querySelector("#p_rpsResultCurrentRound");
 
 
 // Event Listeners
@@ -21,9 +23,7 @@ const humanChoiceScissors = document.querySelector("#humanChoiceScissors");
 // Event Listeners:btn's 
 //#########
 btn1Round.addEventListener("click", () =>{
-    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
+    resetStylesLastRound();
     amountRounds = 1;
     currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/1)";
@@ -31,18 +31,14 @@ btn1Round.addEventListener("click", () =>{
 });
 
 btn3Round.addEventListener("click", () =>{
-    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
+    resetStylesLastRound();
     amountRounds = 3;
     currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/3)";
 });
 
 btn5Round.addEventListener("click", () =>{
-    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
+    resetStylesLastRound();
     amountRounds = 5;
     currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/5)";
@@ -51,10 +47,7 @@ btn5Round.addEventListener("click", () =>{
 // Event Listeners: humanChoice divs
 //#########
 humanChoiceRock.addEventListener("click", () =>{
-    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
-
+    resetStylesLastRound();
     humanChoice = "rock";
     if(currentRound<amountRounds){
         playRound();
@@ -66,10 +59,7 @@ humanChoiceRock.addEventListener("click", () =>{
 });
 
 humanChoicePaper.addEventListener("click", () =>{
-    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
-
+    resetStylesLastRound();
     humanChoice = "paper";
     if(currentRound<amountRounds){
         playRound();
@@ -83,10 +73,7 @@ humanChoicePaper.addEventListener("click", () =>{
 });
 
 humanChoiceScissors.addEventListener("click", () =>{
-    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
-    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
-
+    resetStylesLastRound();
     humanChoice = "scissors";
     if(currentRound<amountRounds){
         playRound();
@@ -130,15 +117,15 @@ function playRound(){
         case 'rock':
             if(computerChoice === "rock"){
                 winner="Rock vs. Rock = Unentschieden"
-                humanChoiceRock.style.backgroundColor = "yellow";
+                setRpsResultCurrentRound(winner, "yellow", "black");
             }else if(computerChoice === "paper"){
                 winner="Rock vs. Paper = Computer Wins";
                 computerScore += 1;
-                humanChoiceRock.style.backgroundColor = "red";
+                setRpsResultCurrentRound(winner, "red", "white");
             } else if (computerChoice === "scissors"){
                 winner="Rock vs. Scissors = Human Wins";
                 humanScore += 1;
-                humanChoiceRock.style.backgroundColor = "green";
+                setRpsResultCurrentRound(winner, "green", "white");
             }
             break;  
         case 'paper':
@@ -196,20 +183,17 @@ function playRound(){
 
     console.clear();
     console.log(winner + " Zwischenstand ==> Human: " + humanScore + " Computer: " + computerScore);
-    //playAgain();
 }
 
-function playAgain(){
-    let again = prompt("Nochmal? y/n: ");
-    if(again === "y"){
-        playRound();
-    }else{}
+function setRpsResultCurrentRound(text, backgroundColor, color){
+    p_rpsResultCurrentRound.textContent = text;
+    rpsResultCurrentRound.style.backgroundColor = backgroundColor;
+    rpsResultCurrentRound.style.color = color;
 }
 
-
-// INVOKE FUNKTIONS 
-//#############################
-//playRound();
-
-// console.log("Computer: " + getComputerChoice());
-// console.log("Human: " + getHumanChoice());
+function resetStylesLastRound(){
+    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
+    rpsResultCurrentRound.style.backgroundColor = "var(--secondaryColor500)";
+}
