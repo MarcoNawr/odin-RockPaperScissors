@@ -132,28 +132,29 @@ function playRound(){
             if(computerChoice === "rock"){
                 winner="Paper vs. Rock = Human Wins"
                 humanScore += 1;
+                setRpsResultCurrentRound(winner, "green", "white");
                 humanChoicePaper.style.backgroundColor = "green";
             }else if(computerChoice === "paper"){
                 winner="Paper vs. Paper = Unentschieden";
-                humanChoicePaper.style.backgroundColor = "yellow";
+                setRpsResultCurrentRound(winner, "yellow", "black");
             } else if (computerChoice === "scissors"){
                 winner="Paper vs. Scissors = Computer Wins";
                 computerScore += 1;
-                humanChoicePaper.style.backgroundColor = "red";
+                setRpsResultCurrentRound(winner, "red", "white");
             }
             break;  
         case 'scissors':
             if(computerChoice === "rock"){
                 winner="Scissors vs. Rock = Computer Wins"
                 computerScore += 1;
-                humanChoiceScissors.style.backgroundColor = "red";
+                setRpsResultCurrentRound(winner, "red", "white");
             }else if(computerChoice === "paper"){
                 winner="Scissors vs. Paper = Human Wins";
+                setRpsResultCurrentRound(winner, "green", "white");
                 humanScore += 1;
-                humanChoiceScissors.style.backgroundColor = "green";
             } else if (computerChoice === "scissors"){
                 winner="Scissors vs. Scissors = Unentschieden";
-                humanChoiceScissors.style.backgroundColor = "yellow";
+                setRpsResultCurrentRound(winner, "yellow", "black");
             }
             break;  
         default:
