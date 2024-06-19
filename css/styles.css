@@ -24,7 +24,7 @@ ROOT
 
 :root {
     /*Basics*/
-    --std_margin: 1.0rem;
+    --std_margin: 0.5rem;
     --std_padding: 1.0rem;
     --std_radius: 0.5rem;
     
@@ -80,7 +80,7 @@ rpsGameboard
 rpsSettings
 ############################################*/
 .rpsSettings{
-    margin: var(--std_margin) 0 var(--std_margin) 5px;
+    margin: 0 0 var(--std_margin) 5px;
     padding: var(--std_padding);
     border: var(--std_border);
     border-radius: var(--std_radius);

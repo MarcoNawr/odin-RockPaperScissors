@@ -2,6 +2,29 @@
 //#############################
 let humanScore = 0;
 let computerScore = 0;
+let amountRounds = 1;
+
+const btn1Round = document.querySelector("#btnGo1");
+const btn3Round = document.querySelector("#btnGo3");
+const btn5Round = document.querySelector("#btnGo5");
+const headlineCurrentRound = document.querySelector(".h2rpsCurrentRound");
+
+// event Listeners
+//#############################
+btn1Round.addEventListener("click", () =>{
+    amountRounds = 1;
+    headlineCurrentRound.textContent = "CURRENT ROUND (1/1)";
+});
+
+btn3Round.addEventListener("click", () =>{
+    amountRounds = 3;
+    headlineCurrentRound.textContent = "CURRENT ROUND (1/3)";
+});
+
+btn5Round.addEventListener("click", () =>{
+    amountRounds = 5;
+    headlineCurrentRound.textContent = "CURRENT ROUND (1/5)";
+});
 
 // FUNKTIONS DEKLARATION
 //#############################
