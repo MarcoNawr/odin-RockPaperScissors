@@ -15,7 +15,7 @@
             <button class="btnGo" id="btnGo3">NEW Game with 3 Round's</button>
             <button class="btnGo" id="btnGo5">NEW Game with 5 Round's</button>           
         </div>
-        <h2 class="h2rpsCurrentRound" >CURRENT ROUND</h2>
+        <h2 class="h2rpsCurrentRound" >FIRST: Choose a Gamemode</h2>
         <div class="rpsCurrentRound">
             <div class="hummanchoice">
                 <h2 class="hummanchoice__h2">Your Choice</h2>
@@ -56,12 +56,12 @@
         </div>
         <div class="rpsResultGame">
             <h2>Score</h2>
-            <p>Human 1 : 0 Computer</p>
+            <p class="p_rpsResultGame">...</p>
         </div>
-        <div class="rpsResultGameMessage">
-            <!--tbd-->
+        <div class="rpsResultGameMessage" id="rpsResultGameMessage" onclick="overlayOff()">
+            <div id="overlayText"></div>
         </div>
+        <!--</div>-->
     </div>
-    
 </body>
 </html>

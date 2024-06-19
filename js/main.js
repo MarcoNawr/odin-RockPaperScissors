@@ -5,6 +5,7 @@ let computerScore = 0;
 let amountRounds = 1;
 let currentRound = 0;
 let humanChoice = "errorMessage";
+let gameModeChoosed = false;
 
 const btn1Round = document.querySelector("#btnGo1");
 const btn3Round = document.querySelector("#btnGo3");
@@ -17,6 +18,7 @@ const rpsResultCurrentRound = document.querySelector(".rpsResultCurrentRound");
 const p_rpsResultCurrentRound = document.querySelector("#p_rpsResultCurrentRound");
 const computerchoice__icon = document.querySelector(".computerchoice__icon");
 const computerchoice__choice = document.querySelector(".computerchoice__choice");
+const p_rpsResultGame = document.querySelector(".p_rpsResultGame");
 
 //const SVG
 const SVG_WAITING = '<svg class="svgComputer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"/></svg>';
@@ -30,11 +32,11 @@ const SVG_SCISSOR = '<svg class="svgScissors" xmlns="http://www.w3.org/2000/svg"
 // Event Listeners:btn's 
 //#########
 btn1Round.addEventListener("click", () =>{
-    resetGame();
-    amountRounds = 1;
-    currentRound = 0;
-    headlineCurrentRound.textContent = "CURRENT ROUND (1/1)";
-    
+        resetGame();
+        amountRounds = 1;
+        currentRound = 0;
+        headlineCurrentRound.textContent = "CURRENT ROUND (1/1)";
+        gameModeChoosed=true;
 });
 
 btn3Round.addEventListener("click", () =>{
@@ -42,6 +44,7 @@ btn3Round.addEventListener("click", () =>{
     amountRounds = 3;
     currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/3)";
+    gameModeChoosed=true;
 });
 
 btn5Round.addEventListener("click", () =>{
@@ -49,48 +52,62 @@ btn5Round.addEventListener("click", () =>{
     amountRounds = 5;
     currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/5)";
+    gameModeChoosed=true;
 });
 
 // Event Listeners: humanChoice divs
 //#########
 humanChoiceRock.addEventListener("click", () =>{
-    resetStylesLastRound();
-    humanChoice = "rock";
-    if(currentRound<amountRounds){
-        playRound();
-        currentRound += 1;
-    }
-    if(currentRound+1<=amountRounds){
-        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+    if(gameModeChoosed){
+        resetStylesLastRound();
+        humanChoice = "rock";
+        if(currentRound<amountRounds){
+            playRound();
+            currentRound += 1;
+        }
+        if(currentRound+1<=amountRounds){
+            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+        }
+        if(currentRound == amountRounds){
+            overlayOn();
+        } 
     }
 });
 
 humanChoicePaper.addEventListener("click", () =>{
-    resetStylesLastRound();
-    humanChoice = "paper";
-    if(currentRound<amountRounds){
-        playRound();
-        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
-        currentRound += 1;
+    if(gameModeChoosed){
+        resetStylesLastRound();
+        humanChoice = "paper";
+        if(currentRound<amountRounds){
+            playRound();
+            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+            currentRound += 1;
+        }
+        if(currentRound+1<=amountRounds){
+            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+        }
+        if(currentRound == amountRounds){
+            overlayOn();
+        } 
     }
-    if(currentRound+1<=amountRounds){
-        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
-    }
-    
 });
 
 humanChoiceScissors.addEventListener("click", () =>{
-    resetStylesLastRound();
-    humanChoice = "scissors";
-    if(currentRound<amountRounds){
-        playRound();
-        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
-        currentRound += 1;
+    if(gameModeChoosed){
+        resetStylesLastRound();
+        humanChoice = "scissors";
+        if(currentRound<amountRounds){
+            playRound();
+            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+            currentRound += 1;
+        }
+        if(currentRound+1<=amountRounds){
+            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+        }
+        if(currentRound == amountRounds){
+            overlayOn();
+        } 
     }
-    if(currentRound+1<=amountRounds){
-        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
-    }
-   
 });
 
 
@@ -196,6 +213,7 @@ function playRound(){
 
     console.clear();
     console.log(winner + " Zwischenstand ==> Human: " + humanScore + " Computer: " + computerScore);
+    p_rpsResultGame.textContent = `Human:  ${humanScore} Computer: ${computerScore}`;
 }
 
 function setRpsResultCurrentRound(text, backgroundColor, color){
@@ -225,4 +243,24 @@ function resetGame(){
         amountRounds = 1;
         currentRound = 0;
         humanChoice = "errorMessage";
+        headlineCurrentRound.textContent = "FIRST: Choose a Gamemode";
+        p_rpsResultGame.textContent = "...";
+        p_rpsResultCurrentRound.textContent = "...";
+        gameModeChoosed=false;
 }
+
+function overlayOn() {
+    document.getElementById("rpsResultGameMessage").style.display = "block";
+    if (humanScore === computerScore){
+        document.getElementById("overlayText").textContent = `DRAW: ${humanScore} vs. ${computerScore}`;
+    }else if(humanScore>computerScore){
+        document.getElementById("overlayText").textContent = `YOU WIN: ${humanScore} vs. ${computerScore}`;
+    } else {
+        document.getElementById("overlayText").textContent = `COMPUTER WIN's: ${humanScore} vs. ${computerScore}`;
+    }
+  }
+  
+  function overlayOff() {
+    document.getElementById("rpsResultGameMessage").style.display = "none";
+    resetGame();
+  }
