@@ -3,28 +3,102 @@
 let humanScore = 0;
 let computerScore = 0;
 let amountRounds = 1;
+let currentRound = 0;
+let humanChoice = "errorMessage";
 
 const btn1Round = document.querySelector("#btnGo1");
 const btn3Round = document.querySelector("#btnGo3");
 const btn5Round = document.querySelector("#btnGo5");
 const headlineCurrentRound = document.querySelector(".h2rpsCurrentRound");
+const humanChoiceRock = document.querySelector("#humanChoiceRock");
+const humanChoicePaper = document.querySelector("#humanChoicePaper");
+const humanChoiceScissors = document.querySelector("#humanChoiceScissors");
 
-// event Listeners
+
+// Event Listeners
 //#############################
+
+// Event Listeners:btn's 
+//#########
 btn1Round.addEventListener("click", () =>{
+    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
     amountRounds = 1;
+    currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/1)";
+    
 });
 
 btn3Round.addEventListener("click", () =>{
+    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
     amountRounds = 3;
+    currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/3)";
 });
 
 btn5Round.addEventListener("click", () =>{
+    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
     amountRounds = 5;
+    currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/5)";
 });
+
+// Event Listeners: humanChoice divs
+//#########
+humanChoiceRock.addEventListener("click", () =>{
+    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
+
+    humanChoice = "rock";
+    if(currentRound<amountRounds){
+        playRound();
+        currentRound += 1;
+    }
+    if(currentRound+1<=amountRounds){
+        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+    }
+});
+
+humanChoicePaper.addEventListener("click", () =>{
+    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
+
+    humanChoice = "paper";
+    if(currentRound<amountRounds){
+        playRound();
+        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+        currentRound += 1;
+    }
+    if(currentRound+1<=amountRounds){
+        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+    }
+    
+});
+
+humanChoiceScissors.addEventListener("click", () =>{
+    humanChoiceRock.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoicePaper.style.backgroundColor = "var(--secondaryColor300)";
+    humanChoiceScissors.style.backgroundColor = "var(--secondaryColor300)";
+
+    humanChoice = "scissors";
+    if(currentRound<amountRounds){
+        playRound();
+        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+        currentRound += 1;
+    }
+    if(currentRound+1<=amountRounds){
+        headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+    }
+   
+});
+
 
 // FUNKTIONS DEKLARATION
 //#############################
@@ -44,24 +118,10 @@ function getComputerChoice(){
     }
 }
 
-function getHumanChoice(){
-    //return valid human choice
-    let choice = prompt("Was wählst du (rock, paper oder scissors)? ");
-    choice = choice.toLowerCase();
-
-    if (choice === "rock" || choice === "paper" || choice === "scissors"){
-        return choice;
-    } else {
-        return choice = "errorMessage";
-    }    
-}
-
 function playRound(){
     // play a round between computer an human
-    let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
     let winner = "";
-
 
     switch (humanChoice) {
         case 'errorMessage':
@@ -70,34 +130,43 @@ function playRound(){
         case 'rock':
             if(computerChoice === "rock"){
                 winner="Rock vs. Rock = Unentschieden"
+                humanChoiceRock.style.backgroundColor = "yellow";
             }else if(computerChoice === "paper"){
                 winner="Rock vs. Paper = Computer Wins";
                 computerScore += 1;
+                humanChoiceRock.style.backgroundColor = "red";
             } else if (computerChoice === "scissors"){
                 winner="Rock vs. Scissors = Human Wins";
                 humanScore += 1;
+                humanChoiceRock.style.backgroundColor = "green";
             }
             break;  
         case 'paper':
             if(computerChoice === "rock"){
                 winner="Paper vs. Rock = Human Wins"
                 humanScore += 1;
+                humanChoicePaper.style.backgroundColor = "green";
             }else if(computerChoice === "paper"){
                 winner="Paper vs. Paper = Unentschieden";
+                humanChoicePaper.style.backgroundColor = "yellow";
             } else if (computerChoice === "scissors"){
                 winner="Paper vs. Scissors = Computer Wins";
                 computerScore += 1;
+                humanChoicePaper.style.backgroundColor = "red";
             }
             break;  
         case 'scissors':
             if(computerChoice === "rock"){
                 winner="Scissors vs. Rock = Computer Wins"
                 computerScore += 1;
+                humanChoiceScissors.style.backgroundColor = "red";
             }else if(computerChoice === "paper"){
                 winner="Scissors vs. Paper = Human Wins";
                 humanScore += 1;
+                humanChoiceScissors.style.backgroundColor = "green";
             } else if (computerChoice === "scissors"){
                 winner="Scissors vs. Scissors = Unentschieden";
+                humanChoiceScissors.style.backgroundColor = "yellow";
             }
             break;  
         default:
@@ -140,7 +209,7 @@ function playAgain(){
 
 // INVOKE FUNKTIONS 
 //#############################
-playRound();
+//playRound();
 
 // console.log("Computer: " + getComputerChoice());
 // console.log("Human: " + getHumanChoice());
