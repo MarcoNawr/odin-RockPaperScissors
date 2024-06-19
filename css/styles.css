@@ -156,7 +156,7 @@ rpsCurrentRound
     background-color: var(--secondaryColor400);
 
     /*is FlexItem*/
-    flex-grow: 1;
+    flex-grow: 4;
 
     /*is FlexContainer*/
     display: flex;
@@ -209,6 +209,10 @@ rpsCurrentRound
     border: var(--std_border);
     border-radius: var(--std_radius);
     background-color: var(--secondaryColor400);
+    
+    /*is FlexItem*/
+    flex-grow: 1;
+    max-width: 250px;
 
     /*is FlexContainer*/
     display: flex;
@@ -278,7 +282,7 @@ rpsResultGameMessage
     position: absolute;
     top: 50%;
     left: 50%;
-    font-size: 50px;
+    font-size: 3rem;
     font-weight: bolder;
     color: white;
     transform: translate(-50%,-50%);
