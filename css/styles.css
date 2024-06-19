@@ -103,6 +103,9 @@ legend{
     font-weight: bolder;
 }
 .btnGo{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 5px 50px 5px 50px ;
     border: var(--std_border);
     border-radius: var(--std_radius);
