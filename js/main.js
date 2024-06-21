@@ -32,7 +32,7 @@ const resultScaling = [
     { transform: "rotate(2deg) scale(1)" },
   ];
   
-  const resultTiming = {
+const resultTiming = {
     duration: 400,
     iterations: 1,
   };
@@ -45,7 +45,6 @@ const resultScaling = [
 btn1Round.addEventListener("click", () =>{
         resetGame();
         amountRounds = 1;
-        currentRound = 0;
         headlineCurrentRound.textContent = "CURRENT ROUND (1/1)";
         gameModeChoosed=true;
 });
@@ -53,7 +52,6 @@ btn1Round.addEventListener("click", () =>{
 btn3Round.addEventListener("click", () =>{
     resetGame();
     amountRounds = 3;
-    currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/3)";
     gameModeChoosed=true;
 });
@@ -61,7 +59,6 @@ btn3Round.addEventListener("click", () =>{
 btn5Round.addEventListener("click", () =>{
     resetGame();
     amountRounds = 5;
-    currentRound = 0;
     headlineCurrentRound.textContent = "CURRENT ROUND (1/5)";
     gameModeChoosed=true;
 });
@@ -77,7 +74,7 @@ humanChoiceRock.addEventListener("click", () =>{
             currentRound += 1;
         }
         if(currentRound+1<=amountRounds){
-            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+            setHeadlineCurrentRound();
         }
         if(currentRound == amountRounds){
             overlayOn();
@@ -91,11 +88,11 @@ humanChoicePaper.addEventListener("click", () =>{
         humanChoice = "paper";
         if(currentRound<amountRounds){
             playRound();
-            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+            setHeadlineCurrentRound();
             currentRound += 1;
         }
         if(currentRound+1<=amountRounds){
-            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+            setHeadlineCurrentRound();
         }
         if(currentRound == amountRounds){
             overlayOn();
@@ -109,11 +106,11 @@ humanChoiceScissors.addEventListener("click", () =>{
         humanChoice = "scissors";
         if(currentRound<amountRounds){
             playRound();
-            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+            setHeadlineCurrentRound();
             currentRound += 1;
         }
         if(currentRound+1<=amountRounds){
-            headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+            setHeadlineCurrentRound();
         }
         if(currentRound == amountRounds){
             overlayOn();
@@ -204,32 +201,29 @@ function playRound(){
           console.log("Sorry, something went wrong");
       }
 
- //easy other Solution
-//  function playRound(humanChoice, computerChoice) {
-//     if(humanChoice === computerChoice) {
-//         console.log("It's a tie! Make another pick"); 
-//     }
-//     else if(
-//         (humanChoice == "rock" && computerChoice == "scissors") ||
-//         (humanChoice == "scissors" && computerChoice == "paper") ||
-//         (humanChoice == "paper" && computerChoice == "rock")
-//     ) {
-            //alle die gewinnen so
-//         humanScore++;
-//         console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
-//     } else {
-            //alle anderen verlierem, also so
-//         computerScore++;
-//         console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
-//     }
-// }
-
-
-    console.clear();
-    console.log(winner + " Zwischenstand ==> Human: " + humanScore + " Computer: " + computerScore);
     p_rpsResultGame.textContent = `Human:  ${humanScore} Computer: ${computerScore}`;
     p_rpsResultCurrentRound.animate(resultScaling, resultTiming);
-}
+
+    //easy other Solution
+    //  function playRound(humanChoice, computerChoice) {
+    //     if(humanChoice === computerChoice) {
+    //         console.log("It's a tie! Make another pick"); 
+    //     }
+    //     else if(
+    //         (humanChoice == "rock" && computerChoice == "scissors") ||
+    //         (humanChoice == "scissors" && computerChoice == "paper") ||
+    //         (humanChoice == "paper" && computerChoice == "rock")
+    //     ) {
+                //alle die gewinnen so
+    //         humanScore++;
+    //         console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+    //     } else {
+                //alle anderen verlierem, also so
+    //         computerScore++;
+    //         console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+    //     }
+    // }
+    }
 
 function setRpsResultCurrentRound(text, backgroundColor, color){
     p_rpsResultCurrentRound.textContent = text;
@@ -268,15 +262,23 @@ function resetGame(){
 function overlayOn() {
     document.getElementById("rpsResultGameMessage").style.display = "block";
     if (humanScore === computerScore){
-        document.getElementById("overlayText").textContent = `DRAW: ${humanScore} vs. ${computerScore}`;
+        setGameResult("DRAW");
     }else if(humanScore>computerScore){
-        document.getElementById("overlayText").textContent = `YOU WIN: ${humanScore} vs. ${computerScore}`;
+        setGameResult("YOU WIN");
     } else {
-        document.getElementById("overlayText").textContent = `COMPUTER WIN's: ${humanScore} vs. ${computerScore}`;
+        setGameResult("COMPUTER WIN's");
     }
   }
   
-  function overlayOff() {
+function overlayOff() {
     document.getElementById("rpsResultGameMessage").style.display = "none";
     resetGame();
-  }
+}
+
+function setHeadlineCurrentRound(){
+    headlineCurrentRound.textContent = `CURRENT ROUND (${currentRound+1}/${amountRounds})`;
+}
+
+function setGameResult(result){
+    document.getElementById("overlayText").textContent = `${result}: ${humanScore} vs. ${computerScore}`;
+}
