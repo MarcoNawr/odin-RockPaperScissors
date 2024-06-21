@@ -123,10 +123,8 @@ humanChoiceScissors.addEventListener("click", () =>{
 //#############################
 
 function getComputerChoice(){
-    //random return “rock”, “paper” or “scissors”
     let choice = "";
     let random = Math.random();
-    //console.log("Random Number = " + random);
 
     if (random < 0.33){
         computerchoice__icon.removeChild(computerchoice__icon.firstElementChild);
